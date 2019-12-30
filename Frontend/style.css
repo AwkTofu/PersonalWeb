@@ -1,0 +1,74 @@
+body {
+	background-color: #0c0826;
+	color: #aaa;
+	font-size: 1.4em;
+}
+
+/*  Nav Bar CSS here  */
+.navbar {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+	/*position: -webkit-sticky; /* safari */
+	/*position: sticky;*/
+	top: 0;
+}
+
+.navbar li {
+	float: left;
+}
+
+.navbar li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 0.8em 1.2em;
+	text-decoration: none;
+}
+
+.navbar li a:hover {
+	background-color: #111;
+}
+
+/* Nav Bar Dropdown */
+.navbar li, .dropbtn{
+	display: inline-block;
+	color: white;
+	text-align: center;
+	padding: 0.6em 0.8em;
+	text-decoration: none;
+}
+
+.navbar li.dropdown {
+	display: inline-block;
+}
+
+.navbar .dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 2;
+}
+
+.navbar .dropdown-content a {
+	color: black;
+	padding: 0.6em 0.8em;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.navbar .dropdown-content a:hover {
+	background-color: #f1f1f1;
+}
+.navbar .dropdown:hover .dropdown-content {
+	display: block;
+}
+
+
+
+
