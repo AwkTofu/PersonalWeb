@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+lvCount = 1;
+baseExp = 10;
+
+10.times {
+	Level.create(level: lvCount, exp: lvCount * baseExp)
+	lvCount += 1
+}
+
+Character.create(name: "Imade", level: 1, exp: 0)
+Character.create(name: "FanZhong", level: 1, exp: 0)
+Character.create(name: "Dom", level: 1, exp: 0)
