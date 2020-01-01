@@ -1,0 +1,15 @@
+#game {
+    background-color: cornsilk;
+    width: 40em;
+    height: 22.5em;
+    top: 100px;
+    position: relative;
+}
+
+#test {
+    background-color: crimson;
+    width: 2em;
+    height: 2em;
+    position: absolute;
+    left: 100px;
+}
