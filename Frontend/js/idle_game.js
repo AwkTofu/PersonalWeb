@@ -6,5 +6,5 @@ fetch("http://localhost:3000/characters")
 	})
 
 
-let canvas = document.getElementById("myCanvas");
+let gamecanvas = document.getElementById("game");
 console.log(canvas)
