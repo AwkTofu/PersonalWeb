@@ -243,3 +243,27 @@ Processing by CharactersController#index as */*
 Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 1.1ms | Allocations: 1127)
 
 
+Started GET "/characters" for ::1 at 2020-01-01 14:56:33 -0500
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CharactersController#index as */*
+  [1m[36mCharacter Load (2.8ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/controllers/characters_controller.rb:5:in `index'
+Completed 200 OK in 65ms (Views: 41.4ms | ActiveRecord: 20.6ms | Allocations: 5608)
+
+
+Started GET "/characters" for ::1 at 2020-01-01 14:57:15 -0500
+Processing by CharactersController#index as */*
+  [1m[36mCharacter Load (2.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/controllers/characters_controller.rb:5:in `index'
+Completed 200 OK in 8ms (Views: 4.8ms | ActiveRecord: 2.5ms | Allocations: 1144)
+
+
+Started GET "/characters" for ::1 at 2020-01-01 14:57:37 -0500
+Processing by CharactersController#index as */*
+  [1m[36mCharacter Load (0.7ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/controllers/characters_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.7ms | Allocations: 1144)
+
+
+  [1m[36mCharacter Load (0.9ms)[0m  [1m[34mSELECT "characters".* FROM "characters" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mLevel Load (2.3ms)[0m  [1m[34mSELECT "levels".* FROM "levels" LIMIT $1[0m  [["LIMIT", 11]]
