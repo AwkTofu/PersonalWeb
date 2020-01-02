@@ -144,7 +144,7 @@ let createContinueMenu = () => {
 			.then(respond => respond.json())
 			.then(json => {
 				console.log("Got the Character Details");
-				let expNeedForLvUp = levelData.find(lvs => lvs.level === 4).exp;
+				let expNeedForLvUp = levelData.find(lvs => lvs.level === json.level).exp;
 				player = new Player(json.id, json.name, json.level, json.exp, expNeedForLvUp)
 
 				//If json.status is 404, database doesn't have the data
@@ -279,8 +279,9 @@ function updateExpInfo() {
 		player.exp = 0;
 		++player.lv;
 
-		//TODO
-		var newExpNeededFromDB = 100;
+		//getting the next exp needed base on lv
+		const newExpNeededFromDB = levelData.find(lvs => lvs.level === player.lv).exp;
+
 		player.expNeedForLvUp = newExpNeededFromDB;
 		
 		updateLvInfo()
