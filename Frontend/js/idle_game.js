@@ -6,9 +6,168 @@ fetch("http://localhost:3000/characters")
 	})
 
 //Global Variables
-let player = new Player(1, "Test", 1, 0, 10);
+let player;
 let gamecanvas = document.getElementById("game");
 let gamePlaying;
+
+//**********************Creating Main Menu Divs**********************
+//event hanlder for the buttons in main menu
+let  mainMenuButtonEvent = (event) => {
+	let val = event.target.value;
+	switch (val){
+		case "newgame":
+			createNewCharacterMenu();
+
+			break;
+		case "continue":
+			createContinueMenu();
+
+			break;
+		case "highscore":
+			console.log("highscore")
+			break;
+		case "delete":
+			createDeleteCharacterMenu();
+			break;
+		default:
+			console.log("Unknown button click event", this)
+	}
+	deleteDivFromGame("MainMenu")
+}
+
+//MakeButton for main menu
+function makeButtonForMainMenu(id, txt, val, parentDiv) 
+{
+	let button = document.createElement("button");
+	button.id = id;
+	button.className = "menuButton";
+
+	button.type = "button";
+	button.value = val;
+	button.innerHTML = txt;
+
+	button.addEventListener("click", mainMenuButtonEvent)
+
+	parentDiv.appendChild(button);
+}
+
+let createMainMenu = () => {
+	//Creating the Div to contend all elements for the main screen
+	let mm = document.createElement("div")
+	mm.id = "MainMenu";
+
+	gamecanvas.appendChild(mm);
+
+	//Creating the Game Title
+	let gameTitle = document.createElement("P");
+	gameTitle.innerHTML = "Test Idle Game";
+	gameTitle.id = "gameTitle";
+	mm.append(gameTitle);
+
+	makeButtonForMainMenu("newGameButton", "New Game", "newgame", mm);
+	makeButtonForMainMenu("continueGameButton", "Continue", "continue", mm);
+	makeButtonForMainMenu("highscoreButton", "High Score", "highscore", mm);
+	makeButtonForMainMenu("deleteButton", "Delete", "delete", mm);
+}
+
+//*************************Creating New Game Divs**********************
+let createNewCharacterMenu = () => {
+	//Creating the div and the form
+	let newCharacterMenu = document.createElement("div");
+	newCharacterMenu.id = "NewCharacterMenu";
+	newCharacterMenu.innerHTML = `
+		<h1>Enter your character name</h1>
+		<textarea></textarea>
+		<button id="characterName" class="menuButton">
+			Create
+		</button>`;
+
+	gamecanvas.appendChild(newCharacterMenu)
+
+	//Adding event handler to the create button
+	const createButton = newCharacterMenu.querySelector("#characterName");
+	const playerName = newCharacterMenu.querySelector("textarea");
+
+	createButton.addEventListener("click", () => {
+		//TODO: Fetch player data
+		console.log("Creating new character:", playerName.value)
+		player = new Player(1, playerName.value, 1, 0, 10);
+		
+
+		//Play the game
+		playGame();
+		deleteDivFromGame("NewCharacterMenu");
+	})
+
+	//Back Button
+	createMainMenuBackButton(newCharacterMenu);
+}
+
+//*************************Creating Continue Divs**********************
+let createContinueMenu = () => {
+	//Creating the div and the form
+	let continueMenu = document.createElement("div");
+	continueMenu.id = "ContinueMenu";
+	continueMenu.innerHTML = `
+		<h1>Enter your game id</h1>
+		<textarea></textarea>
+		<button id="loadCharID" class="menuButton">
+			Load
+		</button>`;
+
+	gamecanvas.appendChild(continueMenu)
+
+	//Adding event handler to the load button
+	const loadButton = continueMenu.querySelector("#loadCharID");
+	const playerID = continueMenu.querySelector("textarea");
+
+	loadButton.addEventListener("click", () => {
+		//TODO: Fetch player data
+		console.log("Loading PlayerID", Number(playerID.value))
+		player = new Player(playerID.value, "Test", 1, 0, 10);
+		
+
+		//Play the game
+		playGame();
+		deleteDivFromGame("ContinueMenu");
+	})
+
+	//Back Button
+	createMainMenuBackButton(continueMenu);
+}
+
+//*************************Creating Delete Character Divs**********************
+let createDeleteCharacterMenu = () => {
+	//Creating the div and the form
+	let deleteCharacterMenu = document.createElement("div");
+	deleteCharacterMenu.id = "DeleteCharacterMenu";
+	deleteCharacterMenu.innerHTML = `
+		<h1>Enter your game id you want to delete</h1>
+		<textarea></textarea>
+		<button id="deleteCharID" class="menuButton">
+			Delete
+		</button>`;
+
+	gamecanvas.appendChild(deleteCharacterMenu)
+
+	//Adding event handler to the load button
+	const deleteButton = deleteCharacterMenu.querySelector("#deleteCharID");
+	const playerID = deleteCharacterMenu.querySelector("textarea");
+
+	deleteButton.addEventListener("click", () => {
+		//TODO: Delete player data
+		console.log("Deleting PlayerID", Number(playerID.value))
+		
+
+		//Back to Main Menu
+		createMainMenu();
+		deleteDivFromGame("DeleteCharacterMenu");
+		
+	})
+
+	//Back Button
+	createMainMenuBackButton(deleteCharacterMenu);
+}
 
 //*************************Creating Game Divs**********************
 
@@ -26,7 +185,7 @@ let createGameMainScreenDiv = () => {
 
 	//Creating the character name
 	let characterName = document.createElement("P");
-	characterName.innerHTML = player.name;
+	characterName.innerHTML = `#${player.id} `+player.name;
 	characterName.id = "CharacterName";
 	characterInfo.append(characterName);
 
@@ -71,11 +230,12 @@ function closeGame()
 {
 	deleteDivFromGame("GameMS")
 	clearInterval(gamePlaying);
+	createMainMenu();
 }
 
 function mainGame()
 {
-	playGame()
+	createMainMenu();
 }
 mainGame()
 
@@ -99,8 +259,24 @@ function updateExpInfo() {
 	}
 }
 
+//Assumes the CharacterLv id already exist
 function updateLvInfo() {
 	let characterLv = document.getElementById("CharacterLv");
 	characterLv.innerHTML = "Lv: " + player.lv;
 }
 
+//Creates the main menu back button
+function createMainMenuBackButton(parentDiv) {
+	let button = document.createElement("button");
+	button.id = "backButton";
+	button.className = "menuButton";
+
+	button.innerHTML = "Back";
+
+	button.addEventListener("click", () => {
+		deleteDivFromGame(parentDiv.id);
+		createMainMenu();
+	})
+
+	parentDiv.appendChild(button);
+}
