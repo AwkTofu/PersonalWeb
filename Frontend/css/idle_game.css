@@ -1,0 +1,98 @@
+#game {
+    background-color: cornsilk;
+    width: 40em;
+    height: 22.5em;
+    top: 100px;
+    position: relative;
+}
+
+#test {
+    background-color: crimson;
+    width: 2em;
+    height: 2em;
+    position: absolute;
+    left: 100px;
+}
+
+/*           Main Game Loop CSS                 */
+#CharacterInfo{
+    background-color: blanchedalmond;
+    position: absolute;
+    margin: auto;
+    padding-left: 0.5em;
+    padding-right: 1em;
+    width: 130px;
+    border: 3px solid black;
+}
+
+#CharacterLv {
+    color: black;
+    float: right;
+}
+
+#CharacterName {
+    color: black;
+    float: left;
+}
+
+#CharacterExp {
+    border: black;
+    border-style: dashed;
+    color: black;
+    position: absolute;
+    left: 50%;
+    padding-left: 1em;
+    padding-right: 1em;
+    transform: translateX(-50%);
+    bottom: 2rem;
+}
+
+#BackToMenu {
+    right: 0;
+    position: absolute;
+}
+
+/*           Main Menu CSS              */
+.menuButton {
+    background-color: brown;
+    width: 12em;
+    height: 4em;
+    position: absolute;
+    text-align: center;
+    padding: 1em;
+}
+
+#newGameButton, #continueGameButton, #highscoreButton{
+    background-color: green;
+    left: 43%;
+}
+
+#newGameButton {
+    top: 200px;
+}
+
+#continueGameButton {
+    top: 300px;
+}
+
+#highscoreButton {
+    top: 400px;
+}
+
+#deleteButton {
+    top: 400px;
+    right:0px;
+}
+
+#gameTitle {
+    position: absolute;
+    left: 37%;
+    top:50px;
+    font-size: 2em;
+    color: red;
+}
+
+#backButton{
+    left: 0;
+    bottom: 0;
+}

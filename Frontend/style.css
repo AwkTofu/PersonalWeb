@@ -69,6 +69,16 @@ body {
 	display: block;
 }
 
+/* General Classes */
+.center {
+	width: 60%;
+	margin: 0 auto 0 auto;
+}
+
+/* Canvas */
+#myCanvas {
+	border: 1px solid #fff;
+}
 
 
 
