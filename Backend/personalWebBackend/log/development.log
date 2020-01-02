@@ -879,3 +879,108 @@ Processing by CharactersController#index as HTML
 Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.7ms | Allocations: 773)
 
 
+Started GET "/levels" for ::1 at 2020-01-02 02:12:34 -0500
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LevelsController#index as */*
+  [1m[36mLevel Load (1.0ms)[0m  [1m[34mSELECT "levels".* FROM "levels"[0m
+  ↳ app/controllers/levels_controller.rb:4:in `index'
+Completed 200 OK in 58ms (Views: 43.8ms | ActiveRecord: 11.7ms | Allocations: 5613)
+
+
+Started POST "/characters" for ::1 at 2020-01-02 02:12:40 -0500
+Processing by CharactersController#create as JSON
+  Parameters: {"name"=>"Hi", "levels"=>1, "exp"=>0, "character"=>{"name"=>"Hi", "exp"=>0}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 3.5ms | Allocations: 729)
+
+
+  
+NoMethodError (undefined method `permid' for #<ActionController::Parameters:0x00007ff0459c5a30>
+Did you mean?  permit
+               permit!):
+  
+app/controllers/characters_controller.rb:9:in `create'
+Started POST "/characters" for ::1 at 2020-01-02 02:13:01 -0500
+Processing by CharactersController#create as JSON
+  Parameters: {"name"=>"Hi", "levels"=>1, "exp"=>0, "character"=>{"name"=>"Hi", "exp"=>0}}
+[31mUnpermitted parameters: :levels, :character[0m
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/characters_controller.rb:10:in `create'
+  [1m[36mCharacter Create (4.0ms)[0m  [1m[32mINSERT INTO "characters" ("name", "exp", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Hi"], ["exp", 0], ["created_at", "2020-01-02 07:13:01.133531"], ["updated_at", "2020-01-02 07:13:01.133531"]]
+  ↳ app/controllers/characters_controller.rb:10:in `create'
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/characters_controller.rb:10:in `create'
+Completed 200 OK in 26ms (Views: 0.5ms | ActiveRecord: 15.7ms | Allocations: 5837)
+
+
+Started GET "/characters" for ::1 at 2020-01-02 02:13:09 -0500
+Processing by CharactersController#index as HTML
+  [1m[36mCharacter Load (2.6ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/controllers/characters_controller.rb:5:in `index'
+Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 2.6ms | Allocations: 923)
+
+
+Started GET "/levels" for ::1 at 2020-01-02 02:13:40 -0500
+Processing by LevelsController#index as */*
+  [1m[36mLevel Load (3.1ms)[0m  [1m[34mSELECT "levels".* FROM "levels"[0m
+  ↳ app/controllers/levels_controller.rb:4:in `index'
+Completed 200 OK in 34ms (Views: 17.7ms | ActiveRecord: 14.8ms | Allocations: 4959)
+
+
+Started DELETE "/characters/4" for ::1 at 2020-01-02 02:13:44 -0500
+Processing by CharactersController#destroy as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mCharacter Load (0.4ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/characters_controller.rb:24:in `destroy'
+  [1m[36mCharacter Destroy (2.0ms)[0m  [1m[31mDELETE FROM "characters" WHERE "characters"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/characters_controller.rb:25:in `destroy'
+Completed 204 No Content in 8ms (ActiveRecord: 2.7ms | Allocations: 1418)
+
+
+Started POST "/characters" for ::1 at 2020-01-02 02:13:49 -0500
+Processing by CharactersController#create as JSON
+  Parameters: {"name"=>"Test", "level"=>1, "exp"=>0, "character"=>{"name"=>"Test", "level"=>1, "exp"=>0}}
+[31mUnpermitted parameter: :character[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/characters_controller.rb:10:in `create'
+  [1m[36mCharacter Create (0.5ms)[0m  [1m[32mINSERT INTO "characters" ("name", "level", "exp", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Test"], ["level", 1], ["exp", 0], ["created_at", "2020-01-02 07:13:49.933365"], ["updated_at", "2020-01-02 07:13:49.933365"]]
+  ↳ app/controllers/characters_controller.rb:10:in `create'
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/characters_controller.rb:10:in `create'
+Completed 200 OK in 10ms (Views: 0.5ms | ActiveRecord: 2.1ms | Allocations: 2341)
+
+
+Started GET "/characters" for ::1 at 2020-01-02 02:13:57 -0500
+Processing by CharactersController#index as HTML
+  [1m[36mCharacter Load (0.9ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/controllers/characters_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 2.4ms | ActiveRecord: 0.9ms | Allocations: 892)
+
+
+Started GET "/levels" for ::1 at 2020-01-02 02:15:45 -0500
+Processing by LevelsController#index as */*
+  [1m[36mLevel Load (0.7ms)[0m  [1m[34mSELECT "levels".* FROM "levels"[0m
+  ↳ app/controllers/levels_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.7ms | Allocations: 1794)
+
+
+Started POST "/characters" for ::1 at 2020-01-02 02:15:51 -0500
+Processing by CharactersController#create as JSON
+  Parameters: {"name"=>"Fan", "level"=>1, "exp"=>0, "character"=>{"name"=>"Fan", "level"=>1, "exp"=>0}}
+[31mUnpermitted parameter: :character[0m
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/characters_controller.rb:10:in `create'
+  [1m[36mCharacter Create (0.6ms)[0m  [1m[32mINSERT INTO "characters" ("name", "level", "exp", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Fan"], ["level", 1], ["exp", 0], ["created_at", "2020-01-02 07:15:51.826296"], ["updated_at", "2020-01-02 07:15:51.826296"]]
+  ↳ app/controllers/characters_controller.rb:10:in `create'
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/characters_controller.rb:10:in `create'
+Completed 200 OK in 11ms (Views: 0.5ms | ActiveRecord: 3.2ms | Allocations: 2331)
+
+
+Started GET "/characters/6" for ::1 at 2020-01-02 02:16:02 -0500
+Processing by CharactersController#show as */*
+  Parameters: {"id"=>"6"}
+  [1m[36mCharacter Load (2.6ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/characters_controller.rb:19:in `show'
+Completed 200 OK in 7ms (Views: 1.3ms | ActiveRecord: 2.6ms | Allocations: 691)
+
+

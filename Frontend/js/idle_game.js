@@ -101,11 +101,31 @@ let createNewCharacterMenu = () => {
 		console.log("Creating new character:", playerName.value)
 		player = new Player(1, playerName.value, 1, 0, 10);
 
-		
+		fetch('http://localhost:3000/characters', {
+		    method: 'POST',
+		    headers: {
+		      'content-type': 'application/json',
+		      'accept': 'application/json'
+		    },
+		    body: JSON.stringify({
+		      name: playerName.value,
+		      level: 1,
+		      exp: 0
+		    })
+		  })
+		  .then(resp => resp.json())
+		  .then(character => {
+		    //setting the player data
+		    let expNeedForLvUp = levelData.find(lvs => lvs.level === character.level).exp;
+		    player = new Player(character.id, character.name, character.level, character.exp, expNeedForLvUp);
+
+		    playGame();
+		    deleteDivFromGame("NewCharacterMenu");
+		  })
 
 		//Play the game
-		playGame();
-		deleteDivFromGame("NewCharacterMenu");
+		// playGame();
+		// deleteDivFromGame("NewCharacterMenu");
 	})
 
 	//Back Button
