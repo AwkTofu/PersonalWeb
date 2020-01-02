@@ -1,14 +1,22 @@
 console.log("Idle Game JS Loaded");
-fetch("http://localhost:3000/characters")
-	.then(respond => respond.json())
-	.then(json => {
-		console.log(json)
-	})
+// fetch("http://localhost:3000/characters")
+// 	.then(respond => respond.json())
+// 	.then(json => {
+// 		console.log(json)
+// 	})
 
 //Global Variables
 let player;
 let gamecanvas = document.getElementById("game");
 let gamePlaying;
+let levelData;
+
+//Getting the Level Datas
+fetch(`http://localhost:3000/levels`)
+	.then(respond => respond.json())
+	.then(json => {
+		levelData = json;
+	})
 
 //**********************Creating Main Menu Divs**********************
 //event hanlder for the buttons in main menu
@@ -92,6 +100,7 @@ let createNewCharacterMenu = () => {
 		//TODO: Fetch player data
 		console.log("Creating new character:", playerName.value)
 		player = new Player(1, playerName.value, 1, 0, 10);
+
 		
 
 		//Play the game
@@ -124,12 +133,31 @@ let createContinueMenu = () => {
 	loadButton.addEventListener("click", () => {
 		//TODO: Fetch player data
 		console.log("Loading PlayerID", Number(playerID.value))
-		player = new Player(playerID.value, "Test", 1, 0, 10);
+		// player = new Player(playerID.value, "Test", 1, 0, 10);
 		
 
-		//Play the game
-		playGame();
-		deleteDivFromGame("ContinueMenu");
+		// //Play the game
+		// playGame();
+		// deleteDivFromGame("ContinueMenu");
+
+		fetch(`http://localhost:3000/characters/${playerID.value}`)
+			.then(respond => respond.json())
+			.then(json => {
+				console.log("Got the Character Details");
+				let expNeedForLvUp = levelData.find(lvs => lvs.level === 4).exp;
+				player = new Player(json.id, json.name, json.level, json.exp, expNeedForLvUp)
+
+				//If json.status is 404, database doesn't have the data
+				if (json.status === 404)
+				{
+					alert("Error 404, Character ID not found!")
+				}
+				else
+				{
+					playGame();
+					deleteDivFromGame("ContinueMenu");
+				}
+			})
 	})
 
 	//Back Button
