@@ -13,3 +13,41 @@
     position: absolute;
     left: 100px;
 }
+
+/*           Game Main Screen Stuff                 */
+#CharacterInfo{
+    background-color: blanchedalmond;
+    position: absolute;
+    margin: auto;
+    padding-left: 0.5em;
+    padding-right: 1em;
+    width: 100px;
+    border: 3px solid black;
+}
+
+#CharacterLv {
+    color: black;
+    float: right;
+}
+
+#CharacterName {
+    color: black;
+    float: left;
+}
+
+#CharacterExp {
+    border: black;
+    border-style: dashed;
+    color: black;
+    position: absolute;
+    left: 50%;
+    padding-left: 1em;
+    padding-right: 1em;
+    transform: translateX(-50%);
+    bottom: 2rem;
+}
+
+#BackToMenu {
+    right: 0;
+    position: absolute;
+}
