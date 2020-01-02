@@ -1,5 +1,2 @@
-#Test
-
-##Test 2
-
-Test 3
+Remember to go to backend and type ```rails s```
+Backend build on Rails and postgreSQL
