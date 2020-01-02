@@ -187,9 +187,17 @@ let createDeleteCharacterMenu = () => {
 		console.log("Deleting PlayerID", Number(playerID.value))
 		
 
-		//Back to Main Menu
-		createMainMenu();
-		deleteDivFromGame("DeleteCharacterMenu");
+		// //Back to Main Menu
+		// createMainMenu();
+		// deleteDivFromGame("DeleteCharacterMenu");
+
+		fetch(`http://localhost:3000/characters/${playerID.value}`,{
+		      method: "DELETE"
+		    })
+		    .then(() => {
+				createMainMenu();
+				deleteDivFromGame("DeleteCharacterMenu");
+		    })
 		
 	})
 
